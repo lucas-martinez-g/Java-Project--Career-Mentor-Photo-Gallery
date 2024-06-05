@@ -27,11 +27,9 @@ public class GalleryController {
   public ResponseEntity<Photo> createPhoto(@PathVariable String username,
       @RequestBody PhotoDTO photoDTO) {
     Photo createdPhoto = galleryService.createPhotoForUser(username, photoDTO);
-    if (createdPhoto != null) {
-      return ResponseEntity.status(HttpStatus.CREATED).body(createdPhoto);
-    } else {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-    }
+    return (createdPhoto != null) ?
+        ResponseEntity.status(HttpStatus.CREATED).body(createdPhoto) :
+        ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
   }
 
   @GetMapping("/{id}")

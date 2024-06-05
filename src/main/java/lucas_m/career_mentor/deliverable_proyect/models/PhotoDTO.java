@@ -10,8 +10,5 @@ public class PhotoDTO {
 
   private LocalDate createDate;
   private LocalDate updateDate;
-  private String author;
   private String url;
-  private String username;
-
 }
