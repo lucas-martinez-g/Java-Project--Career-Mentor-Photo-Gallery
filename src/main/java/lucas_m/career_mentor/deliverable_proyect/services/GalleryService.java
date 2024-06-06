@@ -25,12 +25,12 @@ public class GalleryService {
       return null;
     }
     User user = opUser.get();
-    Photo photo = new Photo();
-    photo.setId(photo.getId());
-    photo.setCreateDate(photoDTO.getCreateDate());
-    photo.setUpdateDate(photoDTO.getUpdateDate());
-    photo.setUrl(photoDTO.getUrl());
-    photo.setUser(user);
+    Photo photo = Photo.builder()
+        .createDate(photoDTO.getCreateDate())
+        .updateDate(photoDTO.getUpdateDate())
+        .url(photoDTO.getUrl())
+        .user(user)
+        .build();
     return galleryRepository.save(photo);
   }
 
