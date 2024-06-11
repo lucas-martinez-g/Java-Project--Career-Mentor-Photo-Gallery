@@ -2,7 +2,7 @@ package lucas_m.career_mentor.deliverable_proyect.controllers;
 
 import java.util.List;
 import lucas_m.career_mentor.deliverable_proyect.models.User;
-import lucas_m.career_mentor.deliverable_proyect.services.UsersService;
+import lucas_m.career_mentor.deliverable_proyect.services.UsersServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsersController {
 
   @Autowired
-  private UsersService usersService;
+  private UsersServiceImpl usersService;
 
   @PostMapping
   public ResponseEntity<User> createUser(@RequestBody User user) {

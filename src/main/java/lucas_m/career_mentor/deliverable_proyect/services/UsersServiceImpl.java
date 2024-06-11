@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.Optional;
 import lucas_m.career_mentor.deliverable_proyect.models.User;
 import lucas_m.career_mentor.deliverable_proyect.repositories.UsersRepository;
+import lucas_m.career_mentor.deliverable_proyect.services.interfaces.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UsersService {
+public class UsersServiceImpl implements UsersService {
 
   @Autowired
   private UsersRepository usersRepository;
