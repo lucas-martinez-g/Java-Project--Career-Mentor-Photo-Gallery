@@ -8,11 +8,12 @@ import lucas_m.career_mentor.deliverable_proyect.models.PhotoDTO;
 import lucas_m.career_mentor.deliverable_proyect.models.User;
 import lucas_m.career_mentor.deliverable_proyect.repositories.GalleryRepository;
 import lucas_m.career_mentor.deliverable_proyect.repositories.UsersRepository;
+import lucas_m.career_mentor.deliverable_proyect.services.interfaces.GalleryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GalleryService {
+public class GalleryServiceImpl implements GalleryService {
 
   @Autowired
   private GalleryRepository galleryRepository;

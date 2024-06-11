@@ -1,10 +1,16 @@
 package lucas_m.career_mentor.deliverable_proyect.controllers;
 
+import static lucas_m.career_mentor.deliverable_proyect.utils.constants.Constants.BODY_MISSING_MESSAGE_EXCEPTION;
+import static lucas_m.career_mentor.deliverable_proyect.utils.constants.Constants.EXCEPTION_MESSAGE;
+import static lucas_m.career_mentor.deliverable_proyect.utils.constants.Constants.GALLERY_CONTROLLER_URI;
+
+import jakarta.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 import lucas_m.career_mentor.deliverable_proyect.models.Photo;
 import lucas_m.career_mentor.deliverable_proyect.models.PhotoDTO;
-import lucas_m.career_mentor.deliverable_proyect.services.GalleryService;
+import lucas_m.career_mentor.deliverable_proyect.services.GalleryServiceImpl;
+import lucas_m.career_mentor.deliverable_proyect.utils.exceptions.ResponseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,16 +23,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/gallery")
+@RequestMapping(GALLERY_CONTROLLER_URI)
 public class GalleryController {
 
   @Autowired
-  private GalleryService galleryService;
+  private GalleryServiceImpl galleryService;
+
+  private final String CLAZZ_NAME = GalleryController.class.getCanonicalName();
 
   @PostMapping("/user/{username}")
   public ResponseEntity<Photo> createPhoto(@PathVariable String username,
-      @RequestBody PhotoDTO photoDTO) {
+      @Valid @RequestBody(required = false) PhotoDTO photoDTO) throws ResponseException {
+    if (photoDTO == null) {
+      throw new ResponseException(
+          EXCEPTION_MESSAGE.formatted(BODY_MISSING_MESSAGE_EXCEPTION,
+              CLAZZ_NAME.concat(".createPhoto")));
+    }
     Photo createdPhoto = galleryService.createPhotoForUser(username, photoDTO);
+
     return (createdPhoto != null) ?
         ResponseEntity.status(HttpStatus.CREATED).body(createdPhoto) :
         ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
