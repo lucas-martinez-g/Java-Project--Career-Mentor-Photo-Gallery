@@ -11,7 +11,7 @@
   </parent>
   <groupId>lucasM.careerMentor</groupId>
   <artifactId>deliverable-proyect</artifactId>
-  <version>0.2.0-SNAPSHOT</version>
+  <version>0.3.0-SNAPSHOT</version>
   <name>deliverableProyect</name>
   <description>Deliveralbe project for Spring Boot</description>
   <properties>
@@ -64,6 +64,10 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
     </dependency>
   </dependencies>
 
